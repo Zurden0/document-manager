@@ -1,0 +1,355 @@
+@media (max-width: 1440px) {
+    .sidebar, .sidebar .option-cont {
+        width: 380px;
+    }
+    .sidebar .option {
+        height: 60px;
+        width: 300px;
+        font-size: 18px;
+    }
+    .sidebar .resent-chats {
+        width: 300px;
+    }
+    .sidebar .resent-chats .option {
+        height: 60px;
+        width: 280px;
+        font-size: 18px;
+    }
+    .sidebar .profile {
+        height: 60px;
+        width: 280px;
+        font-size: 18px;
+    }
+    .path {
+        height: 65px;
+    }
+
+    body .right-side {
+        padding-top: 65px;
+    }
+
+    /*                                          */
+    /*              welcome-style               */
+    /*                                          */
+
+    .welcome-block-cont .block {
+        width: 300px;
+        height: 420px;
+        padding: 30px;
+    }
+
+    .welcome-block-cont .block button {
+        width: 240px;
+        height: 65px;
+        bottom: 20px;
+    }
+
+    .block button p {
+        font-size: 18px;
+    }
+
+    /*                                          */
+    /*              chats-style                 */
+    /*                                          */
+
+    .right-side .search-cont label {
+        width: 45%;
+        min-width: 220px;
+    }
+}
+@media (max-width: 1024px) {
+    .path .burger-menu {
+        display: flex;
+    }
+
+    .burger-menu, .burger-menu .option-cont {
+        width: 340px;
+    }
+
+    .burger-menu .option {
+        height: 60px;
+        width: 300px;
+        font-size: 18px;
+    }
+
+    .burger-menu .resent-chats {
+        width: 300px;
+    }
+
+    .burger-menu .resent-chats .option {
+        height: 60px;
+        width: 280px;
+        font-size: 18px;
+    }
+
+    .burger-menu .profile {
+        height: 60px;
+        width: 280px;
+        font-size: 18px;
+    }
+
+    .path {
+        height: 65px;
+    }
+
+    body .right-side {
+        padding-top: 65px;
+    }
+
+    .path svg {
+        display: flex;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    /*                                      */
+    /*              chats-style             */
+    /*                                      */
+
+
+    /*                                          */
+    /*              chat-view-style             */
+    /*                                          */
+
+    .chat-view-block-cont {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .path {
+        padding-right: 15px;
+    }
+
+    .title {
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .title h1 {
+        font-size: 32px;
+        height: auto;
+    }
+
+    .title p {
+        font-size: 20px;
+    }
+
+    /*                                          */
+    /*              welcome-style               */
+    /*                                          */
+
+    .welcome-block-cont {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .welcome-block-cont .block {
+        flex-direction: column;
+        width: 390px;
+        height: 520px;
+        padding: 50px;
+    }
+
+    .welcome-block-cont .block button {
+        width: 290px;
+        bottom: 50px;
+    }
+
+    /*                                         */
+    /*              chats-style                */
+    /*                                         */
+
+    .right-side .search-cont button p {
+        display: none;
+    }
+
+    .right-side .search-cont label {
+        min-width: 240px;
+    }
+
+    .right-side .search-cont {
+        padding: 0 25px;
+    }
+
+    /*                                                  */
+    /*              new-task-for-task-style             */
+    /*                                                  */
+
+    .create-new-document-general-info, .create-new-document-users-info {
+        padding-left: 20px;
+    }
+
+    .create-new-document-general-info {
+        margin-top: 10px;
+    }
+
+    .create-new-document-general-info .input-cont,
+    .create-new-document-general-info .input-cont3,
+    .create-new-document-general-info .input-cont4 {
+        width: 50%;
+    }
+
+    .create-new-document-general-info .input-cont2 {
+        width: 80%;
+    }
+
+    /*                                              */
+    /*              chat-tasks-style                */
+    /*                                              */
+
+    .search-cont.tasks-search-cont {
+        padding: 0 50px 30px 50px;
+    }
+
+}
+
+@media (max-width: 425px) {
+    .path .path2 p, .path .path2 a {
+        display: none;
+    }
+
+    .burger-menu, .burger-menu .option-cont {
+        width: 280px;
+    }
+
+    .burger-menu .option {
+        height: 50px;
+        width: 260px;
+        font-size: 14px;
+        gap: 0;
+    }
+
+    .burger-menu .resent-chats {
+        width: 260px;
+    }
+
+    .burger-menu .resent-chats .option {
+        height: 50px;
+        width: 250px;
+        font-size: 14px;
+    }
+
+    .burger-menu .resent-chats .option span {
+        gap: 0;
+    }
+
+    .burger-menu .profile {
+        height: 50px;
+        width: 260px;
+        font-size: 14px;
+    }
+
+    .right-side .search-cont label {
+        width: 60%;
+        min-width: 160px;
+    }
+
+    /*                                          */
+    /*              welcome-style               */
+    /*                                          */
+
+    .welcome-block-cont {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .welcome-block-cont .block {
+        width: 280px;
+        height: 360px;
+        padding: 30px;
+    }
+
+    .welcome-block-cont .block button {
+        width: 220px;
+        bottom: 20px;
+        height: 55px;
+    }
+
+    /*                                      */
+    /*              chats-style             */
+    /*                                      */
+
+    .chat-table .first-row {
+        display: none;
+    }
+
+    .title {
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .title h1 {
+        font-size: 24px;
+        height: auto;
+    }
+
+    .title p {
+        font-size: 18px;
+    }
+
+    .chat-table .last-activity-cont {
+        display: none;
+    }
+
+    /*                                          */
+    /*              chat-view-style             */
+    /*                                          */
+
+    .chat-view-block-cont .block {
+        width: 280px;
+        height: 400px;
+        padding: 20px;
+    }
+
+    .chat-view-block-cont .block button {
+        width: 240px;
+        height: 60px;
+        bottom: 20px;
+    }
+
+    .chat-view-block-cont .block button p {
+        font-size: 16px;
+    }
+
+    /*                                                  */
+    /*              new-task-for-task-style             */
+    /*                                                  */
+
+    .create-new-document-general-info, .create-new-document-users-info {
+        padding-left: 20px;
+    }
+
+    .create-new-document-general-info {
+        margin-top: 10px;
+    }
+
+    .create-new-document-general-info .input-cont,
+    .create-new-document-general-info .input-cont3,
+    .create-new-document-general-info .input-cont4 {
+        width: 80%;
+    }
+
+    .create-new-document-general-info .input-cont2 {
+        width: 80%;
+    }
+
+    .create-new-document-button {
+        width: 80%;
+        margin: 5% 10%;
+        min-height: 55px;
+    }
+
+    /*                                              */
+    /*              chat-tasks-style                */
+    /*                                              */
+
+    .search-cont.tasks-search-cont {
+        padding: 0 20px 30px 20px;
+    }
+}
