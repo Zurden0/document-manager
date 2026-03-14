@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список чатов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./general/general-style.css">
+</head>
+<body>
+<div class="right-side notification-right-side">
+    <div class="path">
+        <p>Уведомления</p>
+        <svg onclick="document.querySelector('.burger-menu').classList.toggle('active')" width="24" height="24"
+             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 5C3 4.44772 3.44772 4 4 4L20 4C20.5523 4 21 4.44772 21 5C21 5.55229 20.5523 6 20 6L4 6C3.44772 6 3 5.55228 3 5Z"
+                  fill="#14181F"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 12C3 11.4477 3.44772 11 4 11L20 11C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13L4 13C3.44772 13 3 12.5523 3 12Z"
+                  fill="#14181F"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 19C3 18.4477 3.44772 18 4 18L20 18C20.5523 18 21 18.4477 21 19C21 19.5523 20.5523 20 20 20L4 20C3.44772 20 3 19.5523 3 19Z"
+                  fill="#14181F"/>
+        </svg>
+        <div class="burger-menu">
+        </div>
+    </div>
+    <div class="title">
+        <h1>Список уведомлений</h1>
+        <p>Список всех оповещений пользователя.</p>
+    </div>
+    <div class="first-row">
+        <div class="date">Дата</div>
+        <div class="text">Текст</div>
+        <div class="action">Действия</div>
+    </div>
+    <div class="notification-table">
+        <div class="row">
+            <div class="date">
+                <div class="new">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">Изменение статуса подзадачи.</div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div class="new">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Новое приглашение в чат.<br><br>Пользователь “Брехов Д.В.” пригласил(а) вас в чат “11веб241”.<br><br>
+                <span><a href="" class="green">Принять приглашение</a><a href=""
+                                                                         class="red">Отклонить приглашение</a></span>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>Поздравляем! Ваш ответ на подзадачу “Темы курсовых” чата
+                “11веб241”<span class="green">был одобрен</span>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div class="new">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>К сожалению, ваш ответ на подзадачу “Темы курсовых” чата “11веб241”
+                <span class="red">не был одобрен</span>.<a href="" style="margin-left: 5px;">Посмотреть детали</a>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>Внимание. Ваш ответ на подзадачу “Темы курсовых” чата “11веб241”
+                <span class="yellow">была отправлена на доработку</span>.<a href="" style="margin-left: 5px;">Посмотреть
+                детали</a>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>Внимание. Ваш ответ на подзадачу “Темы курсовых” чата “11веб241”
+                <span class="yellow">была отправлена на доработку</span>.<a href="" style="margin-left: 5px;">Посмотреть
+                детали</a>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>Внимание. Ваш ответ на подзадачу “Темы курсовых” чата “11веб241”
+                <span class="yellow">была отправлена на доработку</span>.<a href="" style="margin-left: 5px;">Посмотреть
+                детали</a>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>Внимание. Ваш ответ на подзадачу “Темы курсовых” чата “11веб241”
+                <span class="yellow">была отправлена на доработку</span>.<a href="" style="margin-left: 5px;">Посмотреть
+                детали</a>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>Внимание. Ваш ответ на подзадачу “Темы курсовых” чата “11веб241”
+                <span class="yellow">была отправлена на доработку</span>.<a href="" style="margin-left: 5px;">Посмотреть
+                детали</a>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="date">
+                <div>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="12" height="12" rx="6" transform="matrix(1 0 0 -1 0 12)" fill="none"/>
+                    </svg>
+                </div>
+                <p>24 сентябрь 2026, 18:00</p>
+            </div>
+            <div class="text">
+                Изменение статуса подзадачи.<br><br>Внимание. Ваш ответ на подзадачу “Темы курсовых” чата “11веб241”
+                <span class="yellow">была отправлена на доработку</span>.<a href="" style="margin-left: 5px;">Посмотреть
+                детали</a>.
+            </div>
+            <div class="action">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.25 10.5834L21.7336 18.9376C21.6016 21.0721 21.5356 22.1393 21.0006 22.9066C20.7361 23.286 20.3955 23.6061 20.0006 23.8467C19.2018 24.3334 18.1325 24.3334 15.994 24.3334C13.8526 24.3334 12.7819 24.3334 11.9825 23.8458C11.5873 23.6048 11.2467 23.284 10.9822 22.9041C10.4474 22.1355 10.3829 21.0668 10.2538 18.9293L9.75 10.5834"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 10.5833H23.5M19.3798 10.5833L18.8109 9.40973C18.433 8.63017 18.244 8.24039 17.9181 7.9973C17.8458 7.94338 17.7692 7.89541 17.6892 7.85388C17.3283 7.66663 16.8951 7.66663 16.0288 7.66663C15.1407 7.66663 14.6967 7.66663 14.3297 7.86173C14.2484 7.90497 14.1708 7.95487 14.0977 8.01093C13.768 8.26388 13.5839 8.66792 13.2155 9.47601L12.7108 10.5833"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M13.9167 19.75L13.9167 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18.0833 19.75L18.0833 14.75" stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/general/config.js"></script>
+<script src="/general/sidebar.js"></script>
+</body>
+</html>
