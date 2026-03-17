@@ -1,21 +1,69 @@
 let chats;
+let chat_list_content = `
+<div class="path">
+        <p>Чаты</p>
+        <svg onclick="document.querySelector('.burger-menu').classList.toggle('active')" width="24" height="24"
+             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 5C3 4.44772 3.44772 4 4 4L20 4C20.5523 4 21 4.44772 21 5C21 5.55229 20.5523 6 20 6L4 6C3.44772 6 3 5.55228 3 5Z"
+                  fill="#14181F"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 12C3 11.4477 3.44772 11 4 11L20 11C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13L4 13C3.44772 13 3 12.5523 3 12Z"
+                  fill="#14181F"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 19C3 18.4477 3.44772 18 4 18L20 18C20.5523 18 21 18.4477 21 19C21 19.5523 20.5523 20 20 20L4 20C3.44772 20 3 19.5523 3 19Z"
+                  fill="#14181F"/>
+        </svg>
+        <div class="burger-menu">
+        </div>
+    </div>
+    <div class="title">
+        <h1>Список чатов</h1>
+        <p>Все чаты в которых вы присутствуете или создали.</p>
+    </div>
+    <div class="search-cont">
+        <label>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5834 14.5833L18.3334 18.3333" stroke="#14181F" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M16.6667 9.16667C16.6667 5.02453 13.3089 1.66667 9.16675 1.66667C5.02461 1.66667 1.66675 5.02453 1.66675 9.16667C1.66675 13.3088 5.02461 16.6667 9.16675 16.6667C13.3089 16.6667 16.6667 13.3088 16.6667 9.16667Z"
+                      stroke="#14181F" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <input type="text" placeholder="Поиск чата">
+        </label>
+        <button>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 3.33333V16.6667" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M3.33334 10H16.6667" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+            <p>Создать новый чат</p>
+        </button>
+    </div>
+    <div class="chat-table">
+        <div class="first-row">
+            <p>Название</p>
+            <p>Последняя активность</p>
+        </div>
+    </div>`;
 
-function create_chats() {
+async function create_chats() {
     chats.forEach(chat_data => {
-       let row = document.createElement("div");
-       let svg;
-       row.classList.add("row");
+        let row = document.createElement("div");
+        let svg;
+        row.classList.add("row");
 
-       if (chat_data.is_corporate_chat === "0") {
-           svg = `
+        if (chat_data.is_corporate_chat === "0") {
+            svg = `
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.22197 19.352C6.45351 20.405 1.81671 22.5551 4.64083 25.2457C6.02039 26.56 7.55686 27.5 9.48859 27.5H20.5114C22.4431 27.5 23.9796 26.56 25.3592 25.2457C28.1833 22.5551 23.5465 20.405 21.778 19.352C17.631 16.8827 12.369 16.8827 8.22197 19.352Z"
                           stroke="#14181F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M20.625 8.125C20.625 11.2316 18.1066 13.75 15 13.75C11.8934 13.75 9.375 11.2316 9.375 8.125C9.375 5.0184 11.8934 2.5 15 2.5C18.1066 2.5 20.625 5.0184 20.625 8.125Z"
                           stroke="#14181F" stroke-width="1.5"/>
                 </svg>`;
-       } else {
-           svg = `
+        } else {
+            svg = `
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="30" height="30" fill="none"/>
                     <path d="M25.9674 22.5C26.9041 22.5 27.649 21.9106 28.3179 21.0864C29.6873 19.3993 27.439 18.051 26.5816 17.3908C25.7099 16.7195 24.7366 16.3393 23.7499 16.25M22.4999 13.75C24.2258 13.75 25.6249 12.3509 25.6249 10.625C25.6249 8.89911 24.2258 7.5 22.4999 7.5"
@@ -27,8 +75,8 @@ function create_chats() {
                     <path d="M19.3749 9.375C19.3749 11.7912 17.4161 13.75 14.9999 13.75C12.5836 13.75 10.6249 11.7912 10.6249 9.375C10.6249 6.95875 12.5836 5 14.9999 5C17.4161 5 19.3749 6.95875 19.3749 9.375Z"
                           stroke="#1E1E1E" stroke-width="1.5"/>
                 </svg>`;
-       }
-       row.innerHTML = `
+        }
+        row.innerHTML = `
         <div class="info-cont">
             ${svg}
             <div class="title">
@@ -46,7 +94,17 @@ function create_chats() {
             <p>Никогда</p>
         </div>`;
 
-       document.querySelector(".chat-table").appendChild(row);
+        row.addEventListener("click", async () => {
+            await fetch("/api/add_chat_to_resent.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({chat_id: chat_data.id})
+            });
+            window.location.href = origin_path + `/chats/view.html?id=${chat_data.id}`;
+        });
+        document.querySelector(".chat-table").appendChild(row);
     });
 }
 
@@ -58,9 +116,13 @@ async function get_all_chats() {
     chats = await fetch_data.json();
 }
 
-async function main() {
+async function chat_list_main_function() {
+    await sidebar_main_function();
+    document.querySelector(".right-side").innerHTML = chat_list_content;
+    await create_sidebar(document.querySelector(".burger-menu"));
     await get_all_chats();
-    create_chats();
+    await create_chats();
 }
 
-main().then(r => {});
+chat_list_main_function().then(r => {
+});

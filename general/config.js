@@ -1,10 +1,9 @@
 async function get_user_id() {
     let response = await fetch("/api/get_user_id.php", {
-        method:"GET"
+        method: "GET"
     });
     return Object.values(await response.json())[0];
 }
-
 
 async function get_login() {
     if (user_id) {
@@ -17,15 +16,22 @@ async function get_login() {
     }
 }
 
-async function get_resent_chat() {
-    if (user_id) {
-        let response = await fetch("/api/.php", {
-            method: "GET",
-        });
-        return await response.json();
-    } else {
-        return [];
-    }
+async function get_chat_name(chat_id) {
+    let response = await fetch("/api/get_chat_name.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({chat_id: chat_id})
+    });
+    return Object.values(await response.json())[0];
+}
+
+async function get_resent_chats() {
+    let response = await fetch("/api/get_resent_chat.php", {
+        method: "GET"
+    });
+    return await response.json();
 }
 
 function get_origin_path() {
@@ -39,31 +45,10 @@ function get_origin_path() {
 let user_id;
 let login;
 let origin_path = get_origin_path();
+let resents_chat;
 
 async function get_config() {
     user_id = await get_user_id();
     login = await get_login();
-
+    resents_chat = await get_resent_chats();
 }
-
-async function load_scripts() {
-    let scripts_status = {};
-
-    try {
-        scripts_status["sidebar"] = await start_sidebar_script();
-        console.log("Скрипты подключены ->")
-    } catch (e) {
-        console.log(e);
-        console.log("Ошибка загрузки скрипта ->");
-    }
-
-
-    return scripts_status;
-}
-
-get_config().then(() => {
-    console.log("Конфиг загружен.");
-    load_scripts().then(scripts_status => {
-        console.log(scripts_status);
-    });
-});

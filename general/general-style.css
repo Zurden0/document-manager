@@ -101,6 +101,7 @@ html {
 .burger-menu .resent-chats .option span{
     flex-direction: row;
     height: 100%;
+    width: 100%;
     align-items: center;
     gap: 15px;
 }

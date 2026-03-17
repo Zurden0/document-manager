@@ -154,7 +154,7 @@ async function create_new_chat() {
         selected_users: selected_users
     };
 
-    let fetch_data = await fetch("./../api/create_new_chat.php", {
+    let fetch_data = await fetch("/api/create_new_chat.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
