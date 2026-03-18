@@ -1,6 +1,6 @@
 <?php
 global $database, $host, $username, $db_pass;
-require "./../general/config.php";
+require __DIR__ . "/../general/config.php";
 $db = new mysqli($host, $username, $db_pass, $database);
 
 
