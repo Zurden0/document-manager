@@ -1,8 +1,9 @@
 <?php
 global $database, $host, $username, $db_pass;
 require __DIR__ . "/../general/config.php";
-$db = new mysqli($host, $username, $db_pass, $database);
 
+$db = new mysqli($host, $username, $db_pass, $database);
+header("!-mysql-thread-id:" .$db->thread_id);
 
 $data = file_get_contents('php://input');
 $json = json_decode($data, true);

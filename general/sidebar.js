@@ -1,6 +1,8 @@
-let sidebar_value = `
+const burger_menu_content = document.createElement("div");
+burger_menu_content.classList.add("burger-menu");
+burger_menu_content.innerHTML = `
 <div class="option-cont">
-    <div class="option welcome-option" onclick="history.replaceState({}, '', origin_path + '/welcome.html');location.reload()">
+    <div class="option welcome-option active" onclick="history.replaceState({}, '', '../document_manager/index.html?page=welcome');get_current_content()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.99944 22L8.74881 18.4911C8.61406 16.6046 10.1082 15 11.9994 15C13.8907 15 15.3848 16.6046 15.2501 18.4911L14.9994 22"
                   stroke="#14181F" stroke-width="1.5"/>
@@ -9,7 +11,7 @@ let sidebar_value = `
         </svg>
         <p>Главная</p>
     </div>
-    <div class="option chats-option" onclick="history.replaceState({}, '', origin_path + '/chats.html');location.reload()">
+    <div class="option chat-list-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=chat-list');get_current_content()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22 11.5667C22 16.8499 17.5222 21.1334 12 21.1334C11.3507 21.1343 10.7032 21.0742 10.0654 20.9545C9.60633 20.8682 9.37678 20.8251 9.21653 20.8496C9.05627 20.8741 8.82918 20.9948 8.37499 21.2364C7.09014 21.9197 5.59195 22.161 4.15111 21.893C4.69874 21.2194 5.07275 20.4112 5.23778 19.5448C5.33778 19.0148 5.09 18.5 4.71889 18.1231C3.03333 16.4115 2 14.1051 2 11.5667C2 6.28357 6.47778 2 12 2C17.5222 2 22 6.28357 22 11.5667Z"
                   stroke="#14181F" stroke-width="1.5" stroke-linejoin="round"/>
@@ -19,19 +21,19 @@ let sidebar_value = `
         <p>Чаты</p>
     </div>
     <div class="resent-chats">
-        <div class="option new-chat-option" onclick="history.replaceState({}, '', origin_path + '/chats/new.html');location.reload()">
-            <span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 8V16M16 12L8 12" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"
-                          stroke-linejoin="round"/>
-                    <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z"
-                          stroke="#1E1E1E" stroke-width="1.5"/>
-                </svg>
-                <p>Создать новый чат</p>
-            </span>
+        <div class="option new-chat-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=new-chat');get_current_content()">
+<span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 8V16M16 12L8 12" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round"/>
+        <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z"
+              stroke="#1E1E1E" stroke-width="1.5"/>
+    </svg>
+    <p>Создать новый чат</p>
+</span>
         </div>
     </div>
-    <div class="option my-document-option" onclick="history.replaceState({}, '', origin_path + '/chats/tasks/view.html?user_id=' + user_id);location.reload()">
+    <div class="option my-document-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=view-task&user_id=' + user_id);get_current_content()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.5 10C3.5 6.22876 3.5 4.34315 4.7448 3.17157C5.98959 2 7.99306 2 12 2H12.7727C16.0339 2 17.6645 2 18.7969 2.79784C19.1214 3.02643 19.4094 3.29752 19.6523 3.60289C20.5 4.66867 20.5 6.20336 20.5 9.27273V11.8182C20.5 14.7814 20.5 16.2629 20.0311 17.4462C19.2772 19.3486 17.6829 20.8491 15.6616 21.5586C14.4044 22 12.8302 22 9.68182 22C7.88275 22 6.98322 22 6.26478 21.7478C5.10979 21.3424 4.19875 20.4849 3.76796 19.3979C3.5 18.7217 3.5 17.8751 3.5 16.1818V10Z"
                   stroke="#14181F" stroke-width="1.5" stroke-linejoin="round"/>
@@ -42,19 +44,8 @@ let sidebar_value = `
         </svg>
         <p>Мои документы</p>
     </div>
-<!--    <div class="option notification-option" onclick="history.replaceState({}, '', origin_path + '/notification.html');location.reload()">-->
-<!--        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--            <path d="M5.15837 11.491C5.08489 12.887 5.16936 14.373 3.92213 15.3084C3.34164 15.7438 3 16.427 3 17.1527C3 18.1508 3.7818 19 4.8 19H19.2C20.2182 19 21 18.1508 21 17.1527C21 16.427 20.6584 15.7438 20.0779 15.3084C18.8306 14.373 18.9151 12.887 18.8416 11.491C18.6501 7.85223 15.6438 5 12 5C8.35617 5 5.34988 7.85222 5.15837 11.491Z"-->
-<!--                  stroke="#14181F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>-->
-<!--            <path d="M10.5 3.125C10.5 3.95343 11.1716 5 12 5C12.8284 5 13.5 3.95343 13.5 3.125C13.5 2.29657 12.8284 2 12 2C11.1716 2 10.5 2.29657 10.5 3.125Z"-->
-<!--                  stroke="#14181F" stroke-width="1.5"/>-->
-<!--            <path d="M15 19C15 20.6569 13.6569 22 12 22C10.3431 22 9 20.6569 9 19" stroke="#14181F"-->
-<!--                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>-->
-<!--        </svg>-->
-<!--        <p>Уведомления</p>-->
-<!--    </div>-->
 </div>
-<div class="profile profile-option" onclick="if (user_id) {log_out()} else {history.replaceState({}, '', origin_path + '/login.html');location.reload()}">
+<div class="profile">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
               stroke="#FFFFFF" stroke-width="1.5"/>
@@ -66,11 +57,31 @@ let sidebar_value = `
     <p>Войти в систему</p>
 </div>`;
 
-async function create_sidebar(div) {
-    div.innerHTML = sidebar_value;
-    await create_resents_chat(div);
-    await set_login_to_profile(div);
-    await set_active_option(div);
+let resents_chat = [];
+async function select_sidebar_option(classname) {
+    const sidebar = document.querySelector(".sidebar");
+    const burger_menu = document.querySelector(".burger-menu");
+
+    sidebar.querySelector(".option-cont .active").classList.remove("active");
+    burger_menu.querySelector(".option-cont .active").classList.remove("active");
+
+    sidebar.querySelector("." + classname).classList.add("active");
+    burger_menu.querySelector("." + classname).classList.add("active");
+}
+
+async function set_login_to_profile(div) {
+    if (!login) login = await get_login();
+
+    div.querySelector(".profile p").innerHTML = login;
+}
+
+async function log_out() {
+    if (confirm("Вы уверены что хотите завершить сессию?")) {
+        await fetch("/api/session_drop.php", {
+            method: "GET",
+        });
+        location.reload();
+    }
 }
 
 async function del_recent_chat(chat_id) {
@@ -90,42 +101,22 @@ async function del_recent_chat(chat_id) {
     }
 }
 
-async function set_active_option(div) {
-    switch (window.location.href.split(origin_path)[1].split("?")[0]) {
-        case "/welcome.html":
-            div.querySelector(".welcome-option").classList.add("active");
-            break
-
-        case "/notification.html":
-            div.querySelector(".notification-option").classList.add("active");
-            break
-
-        case "/chats.html":
-            div.querySelector(".chats-option").classList.add("active");
-            break
-
-        case "/chats/new.html":
-            div.querySelector(".new-chat-option").classList.add("active");
-            break
-
-        case "/chats/view.html":
-            const params = new URLSearchParams(window.location.search);
-            if (params) {
-                document.querySelectorAll(`[onclick="del_recent_chat(${params.get('id')}).then(r => {})"]`).forEach(e => {
-                    e.parentElement.classList.add("active");
-                });
-            } else {
-                div.querySelector(".new-chat-option").classList.add("active");
-            }
-            break
+async function get_start_data() {
+    if (user_id) {
+        let response = await fetch("/api/get_starter.php", {
+            method: "GET"
+        });
+        return await response.json();
     }
+    return [];
 }
 
 async function create_resents_chat(div) {
+    await set_login_to_profile(div);
     resents_chat.forEach(element_of_resent_chat => {
         let new_resent_chat_row = document.createElement("div");
-        new_resent_chat_row.classList = "option";
-        new_resent_chat_row.onclick = `window.location.href = '/chats/view?id=${element_of_resent_chat.id}'`;
+        new_resent_chat_row.classList = "option person-chat-" + element_of_resent_chat.chat_id;
+        new_resent_chat_row.onclick = `history.pushState({}, "", "../document_manager/index.html?page=view-chat&id=${element_of_resent_chat.id}"); get_current_content()`;
         if (element_of_resent_chat.is_corporate_chat === '0') {
             new_resent_chat_row.innerHTML = `
                 <span>
@@ -158,34 +149,21 @@ async function create_resents_chat(div) {
         }
 
         new_resent_chat_row.querySelector("span").addEventListener("click", async () => {
-            window.location.href = origin_path + `/chats/view.html?id=${element_of_resent_chat.chat_id}`;
+            history.replaceState({}, '', "../document-manager/index.html?page=view-chat$id=" + element_of_resent_chat.chat_id);
+            await get_current_content();
         });
         div.querySelector(".resent-chats").append(new_resent_chat_row);
     });
 }
 
-async function set_login_to_profile(div) {
-    if (login) {
-        div.querySelector(".profile p").innerHTML = login;
-    }
-}
-
-async function log_out() {
-    if (confirm("Вы уверены что хотите завершить сессию?")) {
-        await fetch("/api/session_drop.php", {
-            method: "GET",
-        });
-        location.reload();
-    }
-}
 
 async function sidebar_main_function() {
-    await get_config();
-    await create_sidebar(document.querySelector(".sidebar"));
-}
+    const data = await get_start_data();
 
-async function load_page(content) {
-    await sidebar_main_function();
-    document.querySelector(".right-side").innerHTML = content;
-}
+    login = data["login"]["login"];
+    resents_chat = data["resents_chat"];
 
+
+    await create_resents_chat(document.querySelector(".sidebar"));
+    await create_resents_chat(document.querySelector(".burger-menu"));
+}

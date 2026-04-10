@@ -32,7 +32,7 @@ foreach ($selected_users as $user) {
 
 $db->query("INSERT INTO `chat_member`(`chat_id`, `user_id`) VALUES ($chat_id, $admin_id)");
 
-echo json_encode(["status" => "Чат успешно создан"]);
+echo json_encode(["chat_id" => $chat_id]);
 
 
 

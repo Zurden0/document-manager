@@ -21,14 +21,14 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if (!$user) {
-    header("Location: /login.html?error=user-not-found");
+    header("Location: ../document_manager/login.html?error=user-not-found");
     exit;
 }
 
 if (password_verify($pass, $user["pass"])) {
     $_SESSION["user_id"] = $user["id"];
-    header("Location: /welcome.html");
+    header("Location: ../document_manager/index.html");
 } else {
-    header("Location: /login.html?error=incorrect-pass-or-login");
+    header("Location: ../document_manager/login.html?error=incorrect-pass-or-login");
 }
 exit;

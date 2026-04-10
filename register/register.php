@@ -15,13 +15,13 @@ if ($pass === $conf_pass) {
         $insert_data = $db->query("INSERT INTO `auth`(login, pass, email) VALUES ('$login', '$hash_pass', '$mail')");
         $_SESSION["user_id"] = $db->insert_id;
     } catch (mysqli_sql_exception) {
-        header("Location: ../register.html?error=login-or-email-exist");
+        header("Location: ../document_manager/register.html?error=login-or-email-exist");
         exit;
     }
 } else {
-    header("Location: ../register.html?error=variable-pass");
+    header("Location: ../document_manager/register.html?error=variable-pass");
     exit;
 }
 
-header("Location: ../welcome.html");
+header("Location: ../document_manager/index.html");
 exit;
