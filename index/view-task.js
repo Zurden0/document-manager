@@ -1,0 +1,265 @@
+const view_task_content = `
+<div class="title">
+        <h1>Задачи чата</h1>
+        <p>Все задачи и подзадачи ранее созданные в чате.</p>
+    </div>
+<div class="search-cont tasks-search-cont">
+    <label>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.5834 14.5833L18.3334 18.3333" stroke="#14181F" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M16.6667 9.16667C16.6667 5.02453 13.3089 1.66667 9.16675 1.66667C5.02461 1.66667 1.66675 5.02453 1.66675 9.16667C1.66675 13.3088 5.02461 16.6667 9.16675 16.6667C13.3089 16.6667 16.6667 13.3088 16.6667 9.16667Z"
+                  stroke="#14181F" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <input type="text" placeholder="Поиск">
+    </label>
+    <button onclick="create_new_task_for_chat().then(r => {})">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3.33325V16.6666" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M3.33334 10H16.6667" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+        <p>Добавить новую задачу</p>
+    </button>
+</div>
+<div class="tasks-list-cont">
+</div>`;
+const view_task_path = `
+<div class="path">
+    <div class="path2">
+        <a onclick="history.replaceState({}, '', '../document_manager/index.html?page=chat-list');get_current_content()">Чаты</a>
+        <p class="slash"> / </p>
+        <a class="chat-name" onclick="history.replaceState({}, '', '../document_manager/index.html?page=view-chat&id=' + current_chat_id);get_current_content()">${current_chat_name}</a>
+        <p class="slash"> / </p>
+        <p>Список задач</p>
+    </div>
+    <svg onclick="document.querySelector('.burger-menu').classList.toggle('active')" width="24" height="24"
+         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M3 5C3 4.44772 3.44772 4 4 4L20 4C20.5523 4 21 4.44772 21 5C21 5.55229 20.5523 6 20 6L4 6C3.44772 6 3 5.55228 3 5Z"
+              fill="#14181F"/>
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M3 12C3 11.4477 3.44772 11 4 11L20 11C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13L4 13C3.44772 13 3 12.5523 3 12Z"
+              fill="#14181F"/>
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M3 19C3 18.4477 3.44772 18 4 18L20 18C20.5523 18 21 18.4477 21 19C21 19.5523 20.5523 20 20 20L4 20C3.44772 20 3 19.5523 3 19Z"
+              fill="#14181F"/>
+    </svg>
+    ${burger_menu_content.outerHTML}
+</div>`;
+let tasks;
+
+async function get_task_form() {
+    return "new";
+}
+
+async function create_new_task_for_chat() {
+    const task_name = prompt("Введите название задачи.");
+
+    if (!current_chat_id) current_chat_id = url.searchParams.get("id");
+    if (!current_chat_id) current_chat_id = url.searchParams.get("chat_id");
+
+    let response = await fetch("/api/create_new_task_for_chat.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            'chat_id': current_chat_id,
+            'task_name': task_name})
+    });
+
+    await response;
+    if (response) {
+        alert('Задача создана.');
+        history.replaceState({}, '', '../document_manager/index.html?page=view-task&chat_id=' + current_chat_id);
+        await get_current_content()
+    } else {
+        alert('Ошибка создания задачи.');
+    }
+
+}
+
+function get_status_for_task(status) {
+    switch (status) {
+        case 1:
+            return ["free", "Свободная", `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.85949 14.641H6.26076C4.0951 14.641 3.01226 14.641 2.33948 13.9576C1.66669 13.2742 1.66669 12.1742 1.66669 9.97437V6.64103C1.66669 4.44114 1.66669 3.3412 2.33948 2.65779C3.01226 1.97437 4.0951 1.97437 6.26076 1.97437H8.22965C10.3953 1.97437 11.6605 2.01116 12.3334 2.69458C13.0061 3.37799 13 4.44114 13 6.64103V7.43198"
+                                  stroke="#6F7C8E" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M10.6302 1.33325V2.66659M7.2969 1.33325V2.66659M3.96356 1.33325V2.66659"
+                                  stroke="#6F7C8E" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M4.66669 10.0001H7.33335M4.66669 6.66675H10" stroke="#6F7C8E"
+                                  stroke-width="1.5" stroke-linecap="round"/>
+                            <path opacity="0.93"
+                                  d="M13.8399 9.91895C13.2363 9.24263 12.8741 9.28289 12.4718 9.40366C12.1901 9.44392 11.2243 10.5711 10.8219 10.9301C10.1613 11.5828 9.4976 12.2548 9.4538 12.3424C9.32871 12.5458 9.21237 12.906 9.15604 13.3086C9.05141 13.9125 8.90048 14.5923 9.09165 14.6505C9.28281 14.7087 9.81596 14.5968 10.4195 14.5083C10.8219 14.4358 11.1036 14.3553 11.3048 14.2345C11.5865 14.0654 12.1096 13.4696 13.011 12.584C13.5763 11.9888 14.1216 11.5775 14.2825 11.175C14.4435 10.5711 14.202 10.2491 13.8399 9.91895Z"
+                                  stroke="#6F7C8E" stroke-width="1.5"/>
+                        </svg>`];
+        case 2:
+            return ["wip", "В процессе", `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.12901 7.59767L8.12801 2.20791C8.44076 1.78638 9.02697 2.04874 9.02697 2.61024V6.78197C9.02697 7.11832 9.25687 7.39098 9.54046 7.39098H11.4855C11.9274 7.39098 12.1629 8.00892 11.871 8.40234L7.87199 13.7921C7.55924 14.2136 6.97303 13.9513 6.97303 13.3898V9.21804C6.97303 8.88168 6.74313 8.60902 6.45954 8.60902H4.51449C4.07264 8.60902 3.83711 7.99108 4.12901 7.59767Z"
+                                  stroke="#5261FE" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>`];
+        case 3:
+            return ["wait", "Ждет проверки", `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.99998 14.6666C11.6819 14.6666 14.6666 11.6818 14.6666 7.99992C14.6666 4.31802 11.6819 1.33325 7.99998 1.33325C4.31808 1.33325 1.33331 4.31802 1.33331 7.99992C1.33331 11.6818 4.31808 14.6666 7.99998 14.6666Z"
+                                  stroke="#DB6E00" stroke-width="1.5"/>
+                            <path d="M8.00555 7.00545C7.45327 7.00545 7.00555 7.45317 7.00555 8.00545C7.00555 8.55774 7.45327 9.00545 8.00555 9.00545C8.55784 9.00545 9.00555 8.55774 9.00555 8.00545C9.00555 7.45317 8.55784 7.00545 8.00555 7.00545ZM8.00555 7.00545V4.66602M10.0101 10.0132L8.71107 8.71414"
+                                  stroke="#DB6E00" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>`];
+        case 4:
+            return ["accept", "Принято", `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.33331 9.33325L5.66665 11.6666L12.6666 4.33325" stroke="#00A81C"
+                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>`];
+        case 5:
+            return ["reject", "Не принято", `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.99957 10L6 6M6.00043 10L10 6" stroke="#DF0C3D" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.6666 7.99984C14.6666 4.31794 11.6819 1.33317 7.99998 1.33317C4.31808 1.33317 1.33331 4.31794 1.33331 7.99984C1.33331 11.6817 4.31808 14.6665 7.99998 14.6665C11.6819 14.6665 14.6666 11.6817 14.6666 7.99984Z"
+                                  stroke="#DF0C3D" stroke-width="1.5"/>
+                        </svg>`];
+    }
+}
+
+function create_task_for_task(task_data, task_number) {
+    let row = document.createElement("div");
+    row.classList.add("row");
+
+    const status_data = get_status_for_task(task_data["status"]);
+
+    row.innerHTML = `
+        <div class="metadata">
+            <p class="number">${task_number}.</p>
+            <p class="title">${task_data["name"]}</p>
+        </div>
+        <div class="action-cont">
+            <div class="status ${status_data[0]}">
+                ${status_data[2]}
+                <p>${status_data[1]}</p>
+            </div>
+            <div class="date">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.00001 14.6666C11.6819 14.6666 14.6667 11.6818 14.6667 7.99992C14.6667 4.31802 11.6819 1.33325 8.00001 1.33325C4.31811 1.33325 1.33334 4.31802 1.33334 7.99992C1.33334 11.6818 4.31811 14.6666 8.00001 14.6666Z"
+                          stroke="#1E1E1E" stroke-width="1.5"/>
+                    <path d="M8.00552 7.00545C7.45324 7.00545 7.00552 7.45317 7.00552 8.00545C7.00552 8.55774 7.45324 9.00545 8.00552 9.00545C8.55781 9.00545 9.00552 8.55774 9.00552 8.00545C9.00552 7.45317 8.55781 7.00545 8.00552 7.00545ZM8.00552 7.00545V4.66602M10.0101 10.0132L8.71104 8.71414"
+                          stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                <p>${task_data["answer_date"] ?? "Неизвестно"}</p>
+            </div>
+            <a href="" class="download">Скачать</a>
+            <button class="del-task-for-task-button">
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.25 4.70093L15.7336 13.2694C15.6016 15.4586 15.5356 16.5532 15.0006 17.3401C14.7361 17.7292 14.3955 18.0576 14.0006 18.3044C13.2018 18.8035 12.1325 18.8035 9.99395 18.8035C7.8526 18.8035 6.78192 18.8035 5.98254 18.3034C5.58733 18.0562 5.24666 17.7273 4.98224 17.3375C4.4474 16.5493 4.38288 15.4532 4.25384 13.2609L3.75 4.70093"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M2.5 4.70093H17.5M13.3798 4.70093L12.8109 3.49727C12.433 2.69773 12.244 2.29795 11.9181 2.04862C11.8458 1.99332 11.7692 1.94412 11.6892 1.90152C11.3283 1.70947 10.8951 1.70947 10.0288 1.70947C9.14069 1.70947 8.69665 1.70947 8.32974 1.90957C8.24842 1.95392 8.17082 2.00511 8.09774 2.06261C7.76803 2.32204 7.58386 2.73644 7.2155 3.56525L6.71077 4.70093"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M7.91666 14.1025L7.91666 8.97433" stroke="#DF0C3D" stroke-width="1.5"
+                          stroke-linecap="round"/>
+                    <path d="M12.0833 14.1026L12.0833 8.97437" stroke="#DF0C3D" stroke-width="1.5"
+                          stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>`;
+
+    return row;
+}
+async function create_tasks() {
+    document.querySelector(".tasks-list-cont").innerHTML = "";
+    tasks.forEach(element => {
+        let row = document.createElement("div");
+        row.classList.add("row");
+
+        let task_main_cont = document.createElement("div");
+        task_main_cont.classList.add("task-title-row");
+
+        let task_for_task_main_cont = document.createElement("div");
+        task_for_task_main_cont.classList.add("tasks-for-task-cont");
+
+        task_main_cont.innerHTML = `
+        <h1>${element.task_name}</h1>
+        <div class="action-cont">
+            <button class="add-new-task-for-task" onclick='history.pushState({}, "", "../document_manager/index.html?page=view-task-for-task&form=new&chat_id=${current_chat_id}&for_task_id=${element["id"]}");get_current_content()'>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 3.33325V16.6666" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <path d="M3.33331 10H16.6666" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                <p>Добавить подзадачу</p>
+            </button>
+            <button class="del-task-button" onclick="delete_task_for_chat()">
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.25 4.70093L15.7336 13.2694C15.6016 15.4586 15.5356 16.5532 15.0006 17.3401C14.7361 17.7292 14.3955 18.0576 14.0006 18.3044C13.2018 18.8035 12.1325 18.8035 9.99395 18.8035C7.8526 18.8035 6.78192 18.8035 5.98254 18.3034C5.58733 18.0562 5.24666 17.7273 4.98224 17.3375C4.4474 16.5493 4.38288 15.4532 4.25384 13.2609L3.75 4.70093"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M2.5 4.70093H17.5M13.3798 4.70093L12.8109 3.49727C12.433 2.69773 12.244 2.29795 11.9181 2.04862C11.8458 1.99332 11.7692 1.94412 11.6892 1.90152C11.3283 1.70947 10.8951 1.70947 10.0288 1.70947C9.14069 1.70947 8.69665 1.70947 8.32974 1.90957C8.24842 1.95392 8.17082 2.00511 8.09774 2.06261C7.76803 2.32204 7.58386 2.73644 7.2155 3.56525L6.71077 4.70093"
+                          stroke="#DF0C3D" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M7.91666 14.1025L7.91666 8.97433" stroke="#DF0C3D" stroke-width="1.5"
+                          stroke-linecap="round"/>
+                    <path d="M12.0833 14.1026L12.0833 8.97437" stroke="#DF0C3D" stroke-width="1.5"
+                          stroke-linecap="round"/>
+                </svg>
+                <p>Удалить</p>
+            </button>
+        </div>`;
+
+        row.appendChild(task_main_cont);
+
+        let i = 1;
+        element["task_data"].forEach(data => {
+            task_for_task_main_cont.appendChild(create_task_for_task(data, i));
+            i += 1;
+        });
+        row.appendChild(task_for_task_main_cont);
+        document.querySelector(".tasks-list-cont").appendChild(row);
+    });
+
+}
+
+async function delete_task_for_chat() {
+
+}
+
+async function get_all_task() {
+    let response = await fetch("/api/get_tasks.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({chat_id: current_chat_id})
+    });
+    return await response.json();
+}
+
+async function get_current_chat() {
+    const url = new URL(window.location.href);
+
+    if (url.searchParams.has("chat_id")) {
+        current_chat_id = url.searchParams.get("chat_id");
+        // await select_sidebar_option("person-chat-" + current_chat_id);
+    }
+
+    const chat_name = await get_chat_name(current_chat_id);
+
+    document.querySelector(".path .path2 .chat-name").innerHTML = chat_name["name"];
+}
+
+async function view_task_main_function() {
+    await get_current_chat();
+
+    tasks = await get_all_task();
+    await create_tasks();
+
+}

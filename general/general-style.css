@@ -922,8 +922,8 @@ body .right-side {
 
 .tasks-list-cont {
     width: 100%;
-    overflow-x: auto;
-    min-height: 100%;
+    /*min-height: 100%;*/
+    margin-bottom: 100px;
 }
 
 .tasks-list-cont .row {

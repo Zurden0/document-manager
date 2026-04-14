@@ -114,7 +114,7 @@ async function create_chats() {
 
 async function create_new_chat_button_listener() {
     document.querySelector(".search-cont button").addEventListener("click",  async () => {
-        history.replaceState({}, '', origin_path + '/index.html?page=new-chat');
+        history.pushState({}, "", "../document_manager/index.html?page=new-chat");
         await get_current_content();
     });
 }

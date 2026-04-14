@@ -2,7 +2,7 @@ const burger_menu_content = document.createElement("div");
 burger_menu_content.classList.add("burger-menu");
 burger_menu_content.innerHTML = `
 <div class="option-cont">
-    <div class="option welcome-option active" onclick="history.replaceState({}, '', '../document_manager/index.html?page=welcome');get_current_content()">
+    <div class="option welcome-option active" onclick="history.replaceState({}, '', '../document_manager/index.html?page=welcome');get_current_content();check_sidebar_option()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.99944 22L8.74881 18.4911C8.61406 16.6046 10.1082 15 11.9994 15C13.8907 15 15.3848 16.6046 15.2501 18.4911L14.9994 22"
                   stroke="#14181F" stroke-width="1.5"/>
@@ -11,7 +11,7 @@ burger_menu_content.innerHTML = `
         </svg>
         <p>Главная</p>
     </div>
-    <div class="option chat-list-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=chat-list');get_current_content()">
+    <div class="option chat-list-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=chat-list');get_current_content();check_sidebar_option()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22 11.5667C22 16.8499 17.5222 21.1334 12 21.1334C11.3507 21.1343 10.7032 21.0742 10.0654 20.9545C9.60633 20.8682 9.37678 20.8251 9.21653 20.8496C9.05627 20.8741 8.82918 20.9948 8.37499 21.2364C7.09014 21.9197 5.59195 22.161 4.15111 21.893C4.69874 21.2194 5.07275 20.4112 5.23778 19.5448C5.33778 19.0148 5.09 18.5 4.71889 18.1231C3.03333 16.4115 2 14.1051 2 11.5667C2 6.28357 6.47778 2 12 2C17.5222 2 22 6.28357 22 11.5667Z"
                   stroke="#14181F" stroke-width="1.5" stroke-linejoin="round"/>
@@ -21,7 +21,7 @@ burger_menu_content.innerHTML = `
         <p>Чаты</p>
     </div>
     <div class="resent-chats">
-        <div class="option new-chat-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=new-chat');get_current_content()">
+        <div class="option new-chat-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=new-chat');get_current_content();check_sidebar_option()">
 <span>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 8V16M16 12L8 12" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"
@@ -33,7 +33,7 @@ burger_menu_content.innerHTML = `
 </span>
         </div>
     </div>
-    <div class="option my-document-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=view-task&user_id=' + user_id);get_current_content()">
+    <div class="option view-task-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=view-task&user_id=' + user_id);get_current_content();check_sidebar_option()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.5 10C3.5 6.22876 3.5 4.34315 4.7448 3.17157C5.98959 2 7.99306 2 12 2H12.7727C16.0339 2 17.6645 2 18.7969 2.79784C19.1214 3.02643 19.4094 3.29752 19.6523 3.60289C20.5 4.66867 20.5 6.20336 20.5 9.27273V11.8182C20.5 14.7814 20.5 16.2629 20.0311 17.4462C19.2772 19.3486 17.6829 20.8491 15.6616 21.5586C14.4044 22 12.8302 22 9.68182 22C7.88275 22 6.98322 22 6.26478 21.7478C5.10979 21.3424 4.19875 20.4849 3.76796 19.3979C3.5 18.7217 3.5 17.8751 3.5 16.1818V10Z"
                   stroke="#14181F" stroke-width="1.5" stroke-linejoin="round"/>
@@ -62,8 +62,11 @@ async function select_sidebar_option(classname) {
     const sidebar = document.querySelector(".sidebar");
     const burger_menu = document.querySelector(".burger-menu");
 
-    sidebar.querySelector(".option-cont .active").classList.remove("active");
-    burger_menu.querySelector(".option-cont .active").classList.remove("active");
+    try {
+        sidebar.querySelector(".option-cont .active").classList.remove("active");
+        burger_menu.querySelector(".option-cont .active").classList.remove("active");
+    } catch (e) {}
+
 
     sidebar.querySelector("." + classname).classList.add("active");
     burger_menu.querySelector("." + classname).classList.add("active");
@@ -101,9 +104,9 @@ async function del_recent_chat(chat_id) {
     }
 }
 
-async function get_start_data() {
+async function get_resent_chat() {
     if (user_id) {
-        let response = await fetch("/api/get_starter.php", {
+        let response = await fetch("/api/get_resent_chat.php", {
             method: "GET"
         });
         return await response.json();
@@ -113,10 +116,21 @@ async function get_start_data() {
 
 async function create_resents_chat(div) {
     await set_login_to_profile(div);
+    div.querySelector(".resent-chats").innerHTML = `
+    <div class="option new-chat-option" onclick="history.replaceState({}, '', '../document_manager/index.html?page=new-chat');get_current_content();check_sidebar_option()">
+        <span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8V16M16 12L8 12" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z"
+                      stroke="#1E1E1E" stroke-width="1.5"/>
+            </svg>
+            <p>Создать новый чат</p>
+        </span>
+    </div>`;
     resents_chat.forEach(element_of_resent_chat => {
         let new_resent_chat_row = document.createElement("div");
         new_resent_chat_row.classList = "option person-chat-" + element_of_resent_chat.chat_id;
-        new_resent_chat_row.onclick = `history.pushState({}, "", "../document_manager/index.html?page=view-chat&id=${element_of_resent_chat.id}"); get_current_content()`;
         if (element_of_resent_chat.is_corporate_chat === '0') {
             new_resent_chat_row.innerHTML = `
                 <span>
@@ -149,21 +163,36 @@ async function create_resents_chat(div) {
         }
 
         new_resent_chat_row.querySelector("span").addEventListener("click", async () => {
-            history.replaceState({}, '', "../document-manager/index.html?page=view-chat$id=" + element_of_resent_chat.chat_id);
+            current_chat_id = element_of_resent_chat.chat_id;
+            history.replaceState({}, '', "../document_manager/index.html?page=view-chat&id=" + element_of_resent_chat.chat_id);
             await get_current_content();
+            await sidebar_main_function();
+            await check_sidebar_option();
         });
         div.querySelector(".resent-chats").append(new_resent_chat_row);
     });
 }
 
+async function check_sidebar_option() {
+    const url = new URL(window.location.href);
+    current_page = url.searchParams.get("page");
+
+    if (current_page === "view-chat") {
+        await select_sidebar_option("person-chat-" + url.searchParams.get("id"));
+    } else if (current_page === "view-task-for-task" || current_page === "view-task") {
+        await select_sidebar_option("person-chat-" + url.searchParams.get("chat_id"));
+    } else {
+        await select_sidebar_option(current_page + "-option");
+    }
+}
 
 async function sidebar_main_function() {
-    const data = await get_start_data();
-
-    login = data["login"]["login"];
-    resents_chat = data["resents_chat"];
-
+    if (!user_id) user_id = await get_user_id();
+    login = await get_login();
+    resents_chat = await get_resent_chat();
 
     await create_resents_chat(document.querySelector(".sidebar"));
     await create_resents_chat(document.querySelector(".burger-menu"));
+
+    await check_sidebar_option();
 }

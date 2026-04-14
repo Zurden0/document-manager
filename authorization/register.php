@@ -15,7 +15,7 @@ if ($pass === $conf_pass) {
         $insert_data = $db->query("INSERT INTO `auth`(login, pass, email) VALUES ('$login', '$hash_pass', '$mail')");
         $_SESSION["user_id"] = $db->insert_id;
     } catch (mysqli_sql_exception) {
-        header("Location: ../document_manager/register.html?error=login-or-email-exist");
+        header("Location: ../document_manager/register.html?error=authorization-or-email-exist");
         exit;
     }
 } else {
